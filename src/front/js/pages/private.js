@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-export const Demo = () => {
+export const Private = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="container">
+			{ !store.token ?
+			<h2>If you're seeing this, then you're not logged in - try logging in</h2>
+			:
+			// <h2>If you're seeing this, then you're logged in - this is protected information</h2>
+			<>
 			<ul className="list-group">
-				{store.demo.map((item, index) => {
+				{store.privated.map((item, index) => {
 					return (
+						
+						
 						<li
 							key={index}
 							className="list-group-item d-flex justify-content-between"
@@ -29,9 +36,13 @@ export const Demo = () => {
 								Change Color
 							</button>
 						</li>
+						
 					);
 				})}
 			</ul>
+			<img className="mx-auto d-block" src="https://dontgetserious.com/wp-content/uploads/2021/08/any-one-there-hello-memes.jpeg"></img>
+			</>
+}
 			<br />
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>
